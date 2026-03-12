@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import Button from './button.jsx'
+import { TodoItemsContext } from '../Store/TodoitemsContext.jsx';
 
 const TodoItem = (props) => {
-    const {id, todoText, todoDate, deleteTodoHandler} = props;
+    const {id, todoText, todoDate} = props;
+    const {deleteTodoHandler} = useContext(TodoItemsContext);
 
-    const addHandler = ()=>{
-        console.log("Trying to remove event");
-    }
+    // const addHandler = ()=>{
+    //     console.log("Trying to remove event");
+    // }
     
 
   return (
@@ -18,7 +21,7 @@ const TodoItem = (props) => {
             <div className="col-3 text-truncate">
                 {todoDate}
             </div>
-            <div className="col-2 text-truncatecol-2 group-hover:opacity-100 transition-opacity">
+            <div className="col-2 text-truncate col-2 group-hover:opacity-100 transition-opacity">
                 <Button btnType="danger" btnText="Delete" handler={() => deleteTodoHandler(id)}/>
             </div>
         </div>

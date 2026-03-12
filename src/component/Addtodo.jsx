@@ -1,11 +1,12 @@
+import { TodoItemsContext } from '../Store/TodoitemsContext.jsx';
 import Button from './button.jsx'
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 
 
 
-const Addtodo = ({addTodoHandler}) => {
+const Addtodo = () => {
 
-  
+  const {addTodoHandler} = useContext(TodoItemsContext);
 
   const todoTextRef = useRef();
   const todoDateRef = useRef();
@@ -13,6 +14,11 @@ const Addtodo = ({addTodoHandler}) => {
   const addHandler = ()=>{
     const todoText = todoTextRef.current.value;
     const todoDate = todoDateRef.current.value;
+
+    if (todoText.trim().length === 0 || todoDate === "") {
+          alert("Please enter both a task and a date!");
+          return;
+    }
     
     addTodoHandler(todoText, todoDate);
     todoTextRef.current.value = "";
