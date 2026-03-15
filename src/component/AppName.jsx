@@ -1,11 +1,5 @@
-
-
-const Heading = (props) => {
-  return (
-    <div className="heading">
-      <h1>{props.title}</h1>
-    </div>
-  )
+const AppName = () => {
+  return <h1 className="heading">Todo App</h1>;
 }
 
-export default Heading
+export default AppName;
