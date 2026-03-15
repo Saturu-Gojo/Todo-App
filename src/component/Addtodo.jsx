@@ -1,50 +1,45 @@
-import { TodoItemsContext } from '../Store/TodoitemsContext.jsx';
-import Button from './button.jsx'
-import { useRef, useContext } from 'react';
+import { TodoItemsContext } from "../store/TodoItemsContext";
+import Button from "./Button";
+import {useRef, useContext} from "react";
 
+const AddTodo = () => {
 
+  const todoTextInput = useRef();
+  const todoDateInput = useRef();
+  const {addTodoItem} = useContext(TodoItemsContext);
 
-const Addtodo = () => {
-
-  const {addTodoHandler} = useContext(TodoItemsContext);
-
-  const todoTextRef = useRef();
-  const todoDateRef = useRef();
-
-  const addHandler = ()=>{
-    const todoText = todoTextRef.current.value;
-    const todoDate = todoDateRef.current.value;
-
-    if (todoText.trim().length === 0 || todoDate === "") {
-          alert("Please enter both a task and a date!");
-          return;
+  const addHandler = () => {
+    const todoText = todoTextInput.current.value;
+    const todoDate = todoDateInput.current.value;
+    if(todoText.trim.length===0 || todoDate.length===0){
+      alert("todo and Date can't be Empty");
+      return;
     }
-    
-    addTodoHandler(todoText, todoDate);
-    todoTextRef.current.value = "";
-    todoDateRef.current.value = "";
+    todoTextInput.current.value = '';
+    todoDateInput.current.value = '';
+    addTodoItem(todoText, todoDate);
   }
 
-
   return (
-    <div className="max-w-4xl mx-auto mt-10 px-4">
-        <div className="row kg-row">
-          <div className="col-5  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-            <input type="text" className="form-control" placeholder="Add your todo here"
-            ref={todoTextRef} 
-            />
-          </div>
-          <div className="col-3  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-            <input type="date" className="form-control" placeholder="Add your todo here" 
-            ref={todoDateRef}
-            />
-          </div>
-          <div className="col-2">
-            <Button btnType="success" btnText="Add" handler={addHandler}/>
-          </div>
+    <div className="container">
+      <div className="row kg-row">
+        <div className="col-5">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter Todo Here"
+            ref={todoTextInput}
+          />
         </div>
+        <div className="col-3">
+          <input type="date" ref={todoDateInput} className="form-control"/>
+        </div>
+        <div className="col-2">
+          <Button btnType="success" btnText="Add" handler={addHandler}/>
+        </div>
+      </div>
     </div>
-    );
+  );
 };
 
-export default Addtodo;
+export default AddTodo;

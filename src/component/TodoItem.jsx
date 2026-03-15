@@ -1,32 +1,22 @@
-import { useContext } from 'react';
-import Button from './button.jsx'
-import { TodoItemsContext } from '../Store/TodoitemsContext.jsx';
+import { TodoItemsContext } from "../store/TodoItemsContext";
+import Button from "./Button";
+import {useContext} from "react";
 
-const TodoItem = (props) => {
-    const {id, todoText, todoDate} = props;
-    const {deleteTodoHandler} = useContext(TodoItemsContext);
+const TodoItem = ({ id, todoText, todoDate }) => {
 
-    // const addHandler = ()=>{
-    //     console.log("Trying to remove event");
-    // }
-    
+  const {deleteTodoItem} = useContext(TodoItemsContext);
 
   return (
     <div className="container">
-        <div className="row kg-row">
-            <div className="col-5 text-truncate">
-                {todoText}
-                
-            </div>
-            <div className="col-3 text-truncate">
-                {todoDate}
-            </div>
-            <div className="col-2 text-truncate col-2 group-hover:opacity-100 transition-opacity">
-                <Button btnType="danger" btnText="Delete" handler={() => deleteTodoHandler(id)}/>
-            </div>
+      <div className="row kg-row">
+        <div className="col-5 text-truncate">{todoText}</div>
+        <div className="col-3">{todoDate}</div>
+        <div className="col-2">
+          <Button btnType="danger" btnText="Delete" handler={() => deleteTodoItem(id)} />
         </div>
+      </div>
     </div>
-    );
+  );
 };
 
 export default TodoItem;
