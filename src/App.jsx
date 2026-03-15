@@ -1,26 +1,18 @@
-import './index.css'
-import './component/heading.css'
-import Addtodo from './component/Addtodo.jsx'
-import Heading from './component/heading.jsx'
-import TodoItems from './component/TodoItems.jsx'
-
-import { TodoItemsProvider } from './Store/TodoitemsContext.jsx';
-
+import AddTodo from "./components/AddTodo";
+import AppName from "./components/AppName";
+import TodoItems from "./components/TodoItems";
+import { TodoItemsProvider } from "./store/TodoItemsContext";
 
 function App() {
-
   return (
-    <>
-      <TodoItemsProvider>
-        <center >
-          <Heading title="Todo App"/>
-          <Addtodo />
-          <TodoItems/>
-        </center>
-      </TodoItemsProvider>
-    </>
-  )
+    <TodoItemsProvider>
+      <center>
+        <AppName />
+        <AddTodo />
+        <TodoItems />
+      </center>
+    </TodoItemsProvider>
+  );
 }
-
 
 export default App;
